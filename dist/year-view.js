@@ -67,17 +67,24 @@ var YearsView = function (_React$Component) {
     }
 
     return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = YearsView.__proto__ || (0, _getPrototypeOf2.default)(YearsView)).call.apply(_ref, [this].concat(args))), _this), _this.state = { years: [] }, _this.cellClick = function (e) {
+      e.preventDefault();
       var year = parseInt(e.target.innerHTML, 10);
       var date = _this.props.date.clone().year(year);
       if (_this.checkIfYearDisabled(date)) return;
       _this.props.prevView(date);
-    }, _this.next = function () {
+    }, _this.next = function (event) {
+      if (event) {
+        event.preventDefault();
+      }
       var nextDate = _this.props.date.clone().add(10, 'years');
       if (_this.props.maxDate && nextDate.isAfter(_this.props.maxDate, 'day')) {
         nextDate = _this.props.maxDate;
       }
       _this.props.setDate(nextDate);
-    }, _this.prev = function () {
+    }, _this.prev = function (event) {
+      if (event) {
+        event.preventDefault();
+      }
       var prevDate = _this.props.date.clone().subtract(10, 'years');
       if (_this.props.minDate && prevDate.isBefore(_this.props.minDate, 'day')) {
         prevDate = _this.props.minDate;

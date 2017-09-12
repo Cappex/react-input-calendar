@@ -206,11 +206,13 @@ class Calendar extends React.Component {
     }
   }
 
-  calendarClick = () => {
+  calendarClick = (event) => {
+    event.preventDefault();
     this.setState({ isCalendar: true })
   }
 
-  todayClick = () => {
+  todayClick = (event) => {
+    event.preventDefault();
     const today = moment().startOf('day')
 
     if (this.checkIfDateDisabled(today)) return
@@ -226,7 +228,10 @@ class Calendar extends React.Component {
     }
   }
 
-  toggleClick = () => {
+  toggleClick = (event) => {
+    if (event) {
+      event.preventDefault();
+    }
     this.setState({ isCalendar: true })
     this.setVisibility()
   }

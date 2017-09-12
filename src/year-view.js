@@ -25,6 +25,7 @@ export default class YearsView extends React.Component {
   }
 
   cellClick = e => {
+    e.preventDefault();
     const year = parseInt(e.target.innerHTML, 10)
     const date = this.props.date.clone().year(year)
     if (this.checkIfYearDisabled(date)) return
@@ -65,7 +66,10 @@ export default class YearsView extends React.Component {
     return items
   }
 
-  next = () => {
+  next = (event) => {
+    if (event) {
+      event.preventDefault();
+    }
     let nextDate = this.props.date.clone().add(10, 'years')
     if (this.props.maxDate && nextDate.isAfter(this.props.maxDate, 'day')) {
       nextDate = this.props.maxDate
@@ -73,7 +77,10 @@ export default class YearsView extends React.Component {
     this.props.setDate(nextDate)
   }
 
-  prev = () => {
+  prev = (event) => {
+    if (event) {
+      event.preventDefault();
+    }
     let prevDate = this.props.date.clone().subtract(10, 'years')
     if (this.props.minDate && prevDate.isBefore(this.props.minDate, 'day')) {
       prevDate = this.props.minDate

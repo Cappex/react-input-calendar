@@ -67,6 +67,7 @@ var DayView = function (_React$Component) {
     }
 
     return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = DayView.__proto__ || (0, _getPrototypeOf2.default)(DayView)).call.apply(_ref, [this].concat(args))), _this), _this.cellClick = function (e) {
+      e.preventDefault();
       var cell = e.target;
       var date = parseInt(cell.innerHTML, 10);
       var newDate = _this.props.date ? _this.props.date.clone() : (0, _moment2.default)();
@@ -81,13 +82,19 @@ var DayView = function (_React$Component) {
 
       newDate.date(date);
       _this.props.setDate(newDate, true);
-    }, _this.next = function () {
+    }, _this.next = function (event) {
+      if (event) {
+        event.preventDefault();
+      }
       var nextDate = _this.props.date.clone().add(1, 'months');
       if (_this.props.maxDate && nextDate.isAfter(_this.props.maxDate, 'day')) {
         nextDate = _this.props.maxDate;
       }
       _this.props.setDateMonthChange(nextDate);
-    }, _this.prev = function () {
+    }, _this.prev = function (event) {
+      if (event) {
+        event.preventDefault();
+      }
       var prevDate = _this.props.date.clone().subtract(1, 'months');
       if (_this.props.minDate && prevDate.isBefore(_this.props.minDate, 'day')) {
         prevDate = _this.props.minDate;

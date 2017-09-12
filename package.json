@@ -5,7 +5,7 @@
   "user": "Rudeg",
   "version": "0.4.1",
   "scripts": {
-    "prepublish": ". ./.scripts/prepublish.sh",
+    "prepublishwin": ".scripts\\prepublish.cmd",
     "lint": "eslint src",
     "lintfix": "eslint src --fix",
     "testonly": "mocha --require .scripts/mocha_runner src/**/tests/**/*.js",

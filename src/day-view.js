@@ -19,6 +19,7 @@ export default class DayView extends React.Component {
   }
 
   cellClick = e => {
+    e.preventDefault();
     let cell = e.target
     let date = parseInt(cell.innerHTML, 10)
     let newDate = this.props.date ? this.props.date.clone() : moment()
@@ -71,7 +72,10 @@ export default class DayView extends React.Component {
     })
   }
 
-  next = () => {
+  next = (event) => {
+    if (event) {
+      event.preventDefault();
+    }
     let nextDate = this.props.date.clone().add(1, 'months')
     if (this.props.maxDate && nextDate.isAfter(this.props.maxDate, 'day')) {
       nextDate = this.props.maxDate
@@ -79,7 +83,10 @@ export default class DayView extends React.Component {
     this.props.setDateMonthChange(nextDate)
   }
 
-  prev = () => {
+  prev = (event) => {
+	if (event) {
+	  event.preventDefault();
+	}
     let prevDate = this.props.date.clone().subtract(1, 'months')
     if (this.props.minDate && prevDate.isBefore(this.props.minDate, 'day')) {
       prevDate = this.props.minDate

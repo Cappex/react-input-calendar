@@ -222,8 +222,7 @@ var Calendar = function (_React$Component) {
             readOnly = true;
           }
         } catch (e) {
-          console.warn(e //eslint-disable-line
-          );
+          console.warn(e); //eslint-disable-line
         }
       }
 
@@ -297,10 +296,10 @@ var _initialiseProps = function _initialiseProps() {
 
     if (date) {
       // format, with strict parsing true, so we catch bad dates
-      newDate = (0, _moment2.default)(date, parsingFormat, true
+      newDate = (0, _moment2.default)(date, parsingFormat, true);
       // if the new date didn't match our format, see if the native
       // js date can parse it
-      );if (!newDate.isValid() && !_this2.props.strictDateParsing) {
+      if (!newDate.isValid() && !_this2.props.strictDateParsing) {
         var d = new Date(date);
         // if native js cannot parse, just make a new date
         if (isNaN(d.getTime())) {
@@ -401,11 +400,13 @@ var _initialiseProps = function _initialiseProps() {
     });
   };
 
-  this.calendarClick = function () {
+  this.calendarClick = function (event) {
+    event.preventDefault();
     _this2.setState({ isCalendar: true });
   };
 
-  this.todayClick = function () {
+  this.todayClick = function (event) {
+    event.preventDefault();
     var today = (0, _moment2.default)().startOf('day');
 
     if (_this2.checkIfDateDisabled(today)) return;
@@ -421,7 +422,10 @@ var _initialiseProps = function _initialiseProps() {
     }
   };
 
-  this.toggleClick = function () {
+  this.toggleClick = function (event) {
+    if (event) {
+      event.preventDefault();
+    }
     _this2.setState({ isCalendar: true });
     _this2.setVisibility();
   };

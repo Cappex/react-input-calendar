@@ -15,6 +15,7 @@ export default class MonthView extends React.Component {
   }
 
   cellClick = e => {
+    e.preventDefault();
     const month = e.target.innerHTML
     if (this.checkIfMonthDisabled(month)) return
 
@@ -41,7 +42,10 @@ export default class MonthView extends React.Component {
     })
   }
 
-  next = () => {
+  next = (event) => {
+    if (event) {
+      event.preventDefault();
+    }
     let nextDate = this.props.date.clone().add(1, 'years')
     if (this.props.maxDate && nextDate.isAfter(this.props.maxDate, 'day')) {
       nextDate = this.props.maxDate
@@ -49,7 +53,10 @@ export default class MonthView extends React.Component {
     this.props.setDate(nextDate)
   }
 
-  prev = () => {
+  prev = (event) => {
+    if (event) {
+      event.preventDefault();
+    }
     let prevDate = this.props.date.clone().subtract(1, 'years')
     if (this.props.minDate && prevDate.isBefore(this.props.minDate, 'day')) {
       prevDate = this.props.minDate
