@@ -103,6 +103,7 @@ var Calendar = function (_React$Component) {
   (0, _createClass3.default)(Calendar, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
+      console.log('using 4.3');
       document.addEventListener('click', this.documentClick);
     }
   }, {
