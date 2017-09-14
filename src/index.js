@@ -39,7 +39,6 @@ class Calendar extends React.Component {
   }
 
   componentDidMount() {
-    console.error('using 4.4');
     document.addEventListener('click', this.documentClick)
   }
 
